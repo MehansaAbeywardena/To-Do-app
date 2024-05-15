@@ -16,3 +16,23 @@ module.exports.saveToDo = async(req,res) => {
     })
     
 }
+
+module.exports.updateToDo = async(req, res)=>{
+    const {_id, text} = req.body
+    ToDoModel
+    .updateById(_id, {text})
+    .then(()=>{
+        res.send("Task Successfully Updated!")
+        .catch((err)=>console.log(err))
+    })
+}
+
+module.exports.deleteToDo = async(req, res)=>{
+    const {_id, text} = req.body
+    ToDoModel
+    .deleteByID(_id, {text})
+    .then(()=>{
+        res.send("Task Successfully Deleted!")
+        .catch((err)=>console.log(err))
+    })
+}
