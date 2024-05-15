@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+App.jsx
+import { useState } from "react";
+import "./App.css";
+import Task from "./components/task/task";
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [value, setValue] = useState("");
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	const handleChange = (event) => {
+		setValue(event.target.value);
+	};
+
+	const tasks = [
+		"Do laundry",
+		"Buy groceries",
+		"Clean room",
+		"Walk the dog",
+		"Clean the house",
+		"Service the car",
+		"Pay bills",
+	];
+
+	return (
+		<div className="app_container">
+			<div className="app">
+				<div className="title_box">
+					<h1>Daily Task Tracker</h1>
+					<h2>Manage all your daily tasks in one place</h2>
+				</div>
+
+				<div className="task_area">
+					<div className="textfield_area">
+						<input
+							className="textfield"
+							placeholder="Enter your task here"
+							type="text"
+							value={value}
+							onChange={handleChange}
+						/>
+						<button className="save_button">Save</button>
+					</div>
+					<div className="buttons_box">
+						{/* Shows only the important pending tasks */}
+						<button className="filter_button">Important tasks</button>
+						<button className="filter_button">Pending tasks</button>
+						<button className="filter_button">Completed tasks</button>
+					</div>
+
+					<div className="task_display">
+						{tasks.map((task, index) => (
+							<Task key={index} taskName={task} />
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
-export default App
+export default App;

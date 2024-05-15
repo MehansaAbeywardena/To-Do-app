@@ -1,0 +1,68 @@
+task.module.css
+.task {
+	padding: 0 20px;
+	border-radius: 5px;
+	display: flex;
+	background-color: var(--dark-blue);
+	color: white;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.task_name {
+	display: flex;
+	gap: 20px;
+}
+
+.task_actions {
+	display: flex;
+	gap: 20px;
+}
+
+.edit_button,
+.delete_button {
+	background: none;
+	border: none;
+	width: 50px;
+	height: 25px;
+	border-radius: 3px;
+	transition: 0.2s;
+}
+
+.edit_button {
+	background-color: white;
+}
+
+.delete_button {
+	background-color: rgb(219, 66, 66);
+	color: white;
+}
+
+.edit_button:hover {
+	cursor: pointer;
+	transition: 0.2s;
+}
+.delete_button:hover {
+	cursor: pointer;
+	background-color: rgb(224, 29, 29);
+	transition: 0.2s;
+}
+
+/* This applies to all scrollable elements */
+::-webkit-scrollbar {
+	width: 15px;
+}
+
+::-webkit-scrollbar-track {
+	background: #d4d4d4;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 20px;
+}
+
+/* change color of scroll thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
