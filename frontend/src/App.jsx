@@ -1,24 +1,20 @@
-App.jsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Task from "./components/task/task";
+import { addTask, getAllTasks } from "./utils/APIHandler";
 
 function App() {
 	const [value, setValue] = useState("");
+	const[task,setTask] = useState([])
+	const [isImportant, setIsImportant] = useState(false);
+
+	useEffect(() => {
+		getAllTasks(setTask)
+	},[])
 
 	const handleChange = (event) => {
 		setValue(event.target.value);
 	};
-
-	const tasks = [
-		"Do laundry",
-		"Buy groceries",
-		"Clean room",
-		"Walk the dog",
-		"Clean the house",
-		"Service the car",
-		"Pay bills",
-	];
 
 	return (
 		<div className="app_container">
@@ -35,9 +31,9 @@ function App() {
 							placeholder="Enter your task here"
 							type="text"
 							value={value}
-							onChange={handleChange}
+							onChange= {(e)=> setValue(e.target.value)}
 						/>
-						<button className="save_button">Save</button>
+						<button className="save_button" onClick={() => addTask(value,setValue,setTask)}>Save</button>
 					</div>
 					<div className="buttons_box">
 						{/* Shows only the important pending tasks */}
@@ -47,8 +43,8 @@ function App() {
 					</div>
 
 					<div className="task_display">
-						{tasks.map((task, index) => (
-							<Task key={index} taskName={task} />
+						{task.map((task) => (
+							<Task key={task._id} taskName={task.text} />
 						))}
 					</div>
 				</div>
